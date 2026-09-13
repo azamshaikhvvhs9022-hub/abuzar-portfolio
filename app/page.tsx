@@ -9,13 +9,55 @@ const EMAIL = "abuzarrrrr.7@gmail.com";
 const ABOUT_IMAGE =
   "https://images.unsplash.com/photo-1504384764586-bb4cdc1707b0?auto=format&fit=crop&fm=jpg&q=85&w=1600";
 
-const skills = [
-  ["01", "Python", "Software & automation"],
-  ["02", "AI / ML", "Intelligent systems"],
-  ["03", "Web", "Modern interfaces"],
-  ["04", "Git & GitHub", "Version control"],
-  ["05", "Problem Solving", "Turning ideas into systems"],
-  ["06", "Learning", "Always exploring"],
+const skillGroups = [
+  {
+    number: "01",
+    title: "Core Development",
+    description:
+      "Languages and fundamentals I use to understand, build and structure software.",
+    skills: [
+      ["Python", "Software · Automation", "82"],
+      ["C / C++", "Programming · Fundamentals", "68"],
+      ["JavaScript", "Web · Interaction", "72"],
+      ["TypeScript", "Modern Web", "64"],
+    ],
+  },
+  {
+    number: "02",
+    title: "Web & Interfaces",
+    description:
+      "Tools for creating modern interfaces and turning ideas into usable experiences.",
+    skills: [
+      ["React", "UI · Components", "68"],
+      ["Next.js", "Full-stack Web", "61"],
+      ["HTML / CSS", "Interfaces · Layout", "82"],
+      ["Responsive Design", "Mobile · UX", "74"],
+    ],
+  },
+  {
+    number: "03",
+    title: "AI & Systems",
+    description:
+      "Exploring intelligent systems, automation and the ideas behind adaptive software.",
+    skills: [
+      ["AI / ML", "Intelligent Systems", "62"],
+      ["Automation", "Workflows · Tools", "76"],
+      ["System Design", "Architecture · Logic", "66"],
+      ["Data & Insights", "Analysis · Behaviour", "58"],
+    ],
+  },
+  {
+    number: "04",
+    title: "Tools & Workflow",
+    description:
+      "The tools that help me build, manage, debug and continuously improve projects.",
+    skills: [
+      ["Git", "Version Control", "78"],
+      ["GitHub", "Collaboration · Code", "82"],
+      ["SQLite", "Local Databases", "64"],
+      ["VS Code", "Development Environment", "88"],
+    ],
+  },
 ];
 
 const stats = [
@@ -30,6 +72,30 @@ const navItems = [
   ["Skills", "#skills"],
   ["Projects", "#projects"],
   ["Contact", "#contact"],
+];
+
+const dashboardStats = [
+  ["87", "Focus score", "Excellent"],
+  ["18:42", "Current session", "Deep work"],
+  ["14", "Blocked", "Distractions"],
+];
+
+const principles = [
+  {
+    number: "01",
+    title: "Curiosity",
+    text: "I like understanding why something works before deciding how to improve it.",
+  },
+  {
+    number: "02",
+    title: "Experimentation",
+    text: "Ideas become interesting when you actually build, test and break them.",
+  },
+  {
+    number: "03",
+    title: "Iteration",
+    text: "The first version is rarely the final version. Good systems evolve.",
+  },
 ];
 
 export default function Home() {
@@ -91,8 +157,6 @@ export default function Home() {
           ABUZAR<span>.</span>
         </a>
 
-        {/* DESKTOP NAVIGATION */}
-
         <div className="nav-links">
           {navItems.map(([label, href]) => (
             <a href={href} key={label}>
@@ -100,8 +164,6 @@ export default function Home() {
             </a>
           ))}
         </div>
-
-        {/* DESKTOP GITHUB */}
 
         <a
           href={GITHUB}
@@ -111,8 +173,6 @@ export default function Home() {
         >
           GitHub ↗
         </a>
-
-        {/* MOBILE MENU BUTTON */}
 
         <button
           type="button"
@@ -271,37 +331,49 @@ export default function Home() {
             </h2>
 
             <p className="about-lead">
-              I&apos;m a developer who enjoys turning random ideas into
-              something real, useful and occasionally a little unexpected.
+              I&apos;m ABUZAR — a developer who likes turning ideas into
+              things that actually work.
             </p>
 
             <p className="about-text">
               I&apos;m interested in software development, artificial
-              intelligence and the systems that sit behind the things we use
-              every day. I like understanding how things work, breaking them
-              down and rebuilding them in a better way.
+              intelligence and the systems that sit behind the products we
+              use every day. I enjoy taking complicated ideas, breaking them
+              into smaller pieces and figuring out how everything connects.
             </p>
 
             <p className="about-text">
-              Right now, I&apos;m focused on improving my development skills,
-              exploring AI and building projects that are more than just
-              something that looks good on a screen.
+              I don&apos;t want to build projects just to say that I built
+              them. I want to understand them, improve them and eventually
+              create systems that solve problems in ways people didn&apos;t
+              expect.
+            </p>
+
+            <p className="about-text">
+              Right now, I&apos;m exploring AI, software engineering and
+              modern web development while constantly experimenting with new
+              ideas.
             </p>
 
             <div className="about-details">
               <div className="detail">
-                <span>WHAT I LIKE</span>
-                <strong>Building unusual ideas</strong>
+                <span>IDENTITY</span>
+                <strong>Developer · Builder</strong>
               </div>
 
               <div className="detail">
-                <span>WHAT I BUILD</span>
-                <strong>Software & intelligent systems</strong>
+                <span>INTERESTS</span>
+                <strong>AI · Software · Systems</strong>
               </div>
 
               <div className="detail">
-                <span>WHAT COMES NEXT</span>
-                <strong>Something bigger</strong>
+                <span>CURRENT MODE</span>
+                <strong>Learning & building</strong>
+              </div>
+
+              <div className="detail">
+                <span>LONG TERM</span>
+                <strong>Build something meaningful</strong>
               </div>
             </div>
 
@@ -311,6 +383,9 @@ export default function Home() {
               <p>
                 The interesting projects usually start as an idea that sounds
                 slightly impossible.
+                <br />
+                <br />
+                Maybe that&apos;s exactly why they&apos;re worth building.
                 <br />
                 <br />
                 — ABUZAR
@@ -327,13 +402,43 @@ export default function Home() {
             </div>
           </div>
         </div>
+
+        {/* =================================================
+            PRINCIPLES
+        ================================================= */}
+
+        <div className="principles">
+          <div className="principles-heading reveal">
+            <p className="section-label">HOW I THINK</p>
+
+            <p>
+              The approach matters just as much as the technology behind the
+              final result.
+            </p>
+          </div>
+
+          <div className="principles-grid">
+            {principles.map((principle) => (
+              <div
+                className="principle-card reveal"
+                key={principle.number}
+              >
+                <span>{principle.number}</span>
+
+                <h3>{principle.title}</h3>
+
+                <p>{principle.text}</p>
+              </div>
+            ))}
+          </div>
+        </div>
       </section>
 
       {/* =====================================================
           SKILLS
       ===================================================== */}
 
-      <section className="section" id="skills">
+      <section className="section skills-section" id="skills">
         <div className="section-heading reveal">
           <div>
             <p className="section-label">02 — SKILLS</p>
@@ -351,29 +456,92 @@ export default function Home() {
           </p>
         </div>
 
-        <div className="skills-grid">
-          {skills.map(([number, title, description]) => (
-            <div className="skill-card reveal" key={number}>
-              <span className="skill-number">{number}</span>
+        <div className="skills-intro reveal">
+          <div>
+            <span>THE STACK</span>
+            <strong>Still learning. Still evolving.</strong>
+          </div>
 
-              <span className="skill-arrow">↗</span>
+          <p>
+            I don&apos;t believe in knowing everything. I believe in knowing
+            enough to build — and being curious enough to learn what comes
+            next.
+          </p>
+        </div>
 
-              <div>
-                <h3>{title}</h3>
-                <p>{description}</p>
+        <div className="skills-groups">
+          {skillGroups.map((group) => (
+            <div className="skill-group reveal" key={group.number}>
+              <div className="skill-group-header">
+                <div className="skill-group-number">
+                  {group.number}
+                </div>
+
+                <div className="skill-group-title">
+                  <h3>{group.title}</h3>
+                  <p>{group.description}</p>
+                </div>
+              </div>
+
+              <div className="skill-list">
+                {group.skills.map(
+                  ([name, description, level]) => (
+                    <div className="skill-item" key={name}>
+                      <div className="skill-item-top">
+                        <div>
+                          <strong>{name}</strong>
+                          <span>{description}</span>
+                        </div>
+
+                        <small>{level}%</small>
+                      </div>
+
+                      <div className="skill-progress">
+                        <span
+                          style={{
+                            width: `${level}%`,
+                          }}
+                        />
+                      </div>
+                    </div>
+                  )
+                )}
               </div>
             </div>
           ))}
         </div>
+
+        <div className="skills-footer reveal">
+          <span>LEARNING NEVER STOPS</span>
+
+          <div>
+            <i />
+            <span>OPEN TO NEW TECHNOLOGIES</span>
+          </div>
+        </div>
       </section>
 
       {/* =====================================================
-          PROJECT
+          FEATURED PROJECT
       ===================================================== */}
 
       <section className="section" id="projects">
         <div className="project-heading reveal">
-          <p className="section-label">03 — FEATURED PROJECT</p>
+          <div>
+            <p className="section-label">03 — FEATURED PROJECT</p>
+
+            <h2>
+              Built to
+              <br />
+              <span>protect focus.</span>
+            </h2>
+          </div>
+
+          <p>
+            A desktop system designed around one simple idea:
+            <br />
+            your attention is worth protecting.
+          </p>
         </div>
 
         <div className="project-card">
@@ -383,10 +551,15 @@ export default function Home() {
               <span>2026</span>
             </div>
 
+            <div className="project-status">
+              <span />
+              ACTIVE DEVELOPMENT
+            </div>
+
             <h3>
               FOCUS-
               <br />
-              X
+              <span>X</span>
             </h3>
 
             <p>
@@ -410,13 +583,10 @@ export default function Home() {
               rel="noreferrer"
               className="project-link"
             >
-              View project <span>↗</span>
+              View project
+              <span>↗</span>
             </a>
           </div>
-
-          {/* =================================================
-              FOCUS-X DASHBOARD MOCKUP
-          ================================================= */}
 
           <div className="dashboard reveal">
             <div className="dashboard-header">
@@ -428,7 +598,10 @@ export default function Home() {
 
               <span>FOCUS-X / DASHBOARD</span>
 
-              <strong>ACTIVE</strong>
+              <strong>
+                <i />
+                ACTIVE
+              </strong>
             </div>
 
             <div className="dashboard-layout">
@@ -440,6 +613,11 @@ export default function Home() {
                 <a>Activity</a>
                 <a>Insights</a>
                 <a>Settings</a>
+
+                <div className="sidebar-bottom">
+                  <span>SESSION</span>
+                  <strong>01 / 01</strong>
+                </div>
               </aside>
 
               <div className="dashboard-main">
@@ -449,58 +627,137 @@ export default function Home() {
                     <h4>Focus Overview</h4>
                   </div>
 
-                  <strong>25:00</strong>
+                  <div className="dashboard-timer">
+                    <small>TIME LEFT</small>
+                    <strong>25:00</strong>
+                  </div>
                 </div>
 
                 <div className="dashboard-grid">
-                  <div className="dash-card score-card">
-                    <small>FOCUS SCORE</small>
+                  {dashboardStats.map(([value, title, subtitle]) => (
+                    <div
+                      className="dash-card metric-card"
+                      key={title}
+                    >
+                      <small>{title}</small>
 
-                    <div className="score-ring">
-                      <strong>87</strong>
-                      <span>/ 100</span>
+                      <strong>{value}</strong>
+
+                      <p>
+                        <span />
+                        {subtitle}
+                      </p>
                     </div>
-
-                    <p>Excellent focus</p>
-                  </div>
-
-                  <div className="dash-card session-card">
-                    <small>CURRENT SESSION</small>
-
-                    <strong>18:42</strong>
-
-                    <div className="progress">
-                      <span />
-                    </div>
-
-                    <p>Deep work session</p>
-                  </div>
+                  ))}
                 </div>
 
                 <div className="dash-card activity-card">
                   <div className="activity-header">
-                    <small>ACTIVITY</small>
+                    <div>
+                      <small>FOCUS ACTIVITY</small>
+                      <strong>Weekly performance</strong>
+                    </div>
+
                     <span>LAST 7 DAYS</span>
                   </div>
 
-                  <div className="activity-bars">
-                    <i style={{ height: "32%" }} />
-                    <i style={{ height: "52%" }} />
-                    <i style={{ height: "44%" }} />
-                    <i style={{ height: "75%" }} />
-                    <i style={{ height: "60%" }} />
-                    <i style={{ height: "88%" }} />
-                    <i style={{ height: "68%" }} />
+                  <div className="activity-chart">
+                    <div className="chart-labels">
+                      <span>100</span>
+                      <span>75</span>
+                      <span>50</span>
+                      <span>25</span>
+                      <span>0</span>
+                    </div>
+
+                    <div className="chart-area">
+                      <div className="chart-lines">
+                        <i />
+                        <i />
+                        <i />
+                        <i />
+                        <i />
+                      </div>
+
+                      <div className="activity-bars">
+                        <div>
+                          <i style={{ height: "34%" }} />
+                          <span>MON</span>
+                        </div>
+
+                        <div>
+                          <i style={{ height: "54%" }} />
+                          <span>TUE</span>
+                        </div>
+
+                        <div>
+                          <i style={{ height: "46%" }} />
+                          <span>WED</span>
+                        </div>
+
+                        <div>
+                          <i style={{ height: "76%" }} />
+                          <span>THU</span>
+                        </div>
+
+                        <div>
+                          <i style={{ height: "61%" }} />
+                          <span>FRI</span>
+                        </div>
+
+                        <div>
+                          <i style={{ height: "89%" }} />
+                          <span>SAT</span>
+                        </div>
+
+                        <div>
+                          <i style={{ height: "69%" }} />
+                          <span>SUN</span>
+                        </div>
+                      </div>
+                    </div>
                   </div>
                 </div>
 
-                <div className="blocked-card">
-                  <span>DISTRACTIONS BLOCKED</span>
-                  <strong>14</strong>
+                <div className="dashboard-bottom">
+                  <div className="blocked-card">
+                    <div>
+                      <span>DISTRACTIONS BLOCKED</span>
+                      <small>Today</small>
+                    </div>
+
+                    <strong>14</strong>
+                  </div>
+
+                  <div className="insight-card">
+                    <div className="insight-icon">↗</div>
+
+                    <div>
+                      <span>AI INSIGHT</span>
+
+                      <p>
+                        Your focus is strongest during deep-work sessions.
+                      </p>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
+        </div>
+
+        <div className="project-footer reveal">
+          <span>FOCUS-X / STUDY FOCUS SYSTEM</span>
+
+          <span>DESIGNED · BUILT · ITERATED</span>
+
+          <a
+            href={FOCUS_X}
+            target="_blank"
+            rel="noreferrer"
+          >
+            GitHub repository ↗
+          </a>
         </div>
       </section>
 
@@ -544,11 +801,9 @@ export default function Home() {
           Maybe your idea is the next interesting thing hiding in the dark.
         </p>
 
-        {/* EMAIL ADDRESS */}
-
-        <p className="contact-email reveal">{EMAIL}</p>
-
-        {/* EMAIL BUTTON */}
+        <p className="contact-email reveal">
+          {EMAIL}
+        </p>
 
         <a
           href={`mailto:${EMAIL}?subject=Hello%20Abuzar`}
