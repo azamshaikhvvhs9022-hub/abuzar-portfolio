@@ -1,6 +1,8 @@
 import type { Metadata, Viewport } from "next";
 import "./globals.css";
 
+const siteUrl = "https://YOUR-ACTUAL-VERCEL-DOMAIN";
+
 export const metadata: Metadata = {
   title: "ABUZAR — Developer · Builder · AI Enthusiast",
 
@@ -25,7 +27,7 @@ export const metadata: Metadata = {
 
   creator: "ABUZAR",
 
-  metadataBase: new URL("https://abuzar-portfolio-ten.vercel.app"),
+  metadataBase: new URL(siteUrl),
 
   alternates: {
     canonical: "/",
@@ -33,24 +35,17 @@ export const metadata: Metadata = {
 
   openGraph: {
     title: "ABUZAR — Developer · Builder · AI Enthusiast",
-
     description:
       "Code, curiosity and a little bit of mystery. Explore ABUZAR's work and projects.",
-
-    url: "https://abuzar-portfolio-ten.vercel.app",
-
+    url: siteUrl,
     siteName: "ABUZAR",
-
     type: "website",
-
     locale: "en_US",
   },
 
   twitter: {
     card: "summary_large_image",
-
     title: "ABUZAR — Developer · Builder · AI Enthusiast",
-
     description:
       "Developer, builder and AI enthusiast. Building digital things.",
   },
