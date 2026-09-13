@@ -1,376 +1,573 @@
-const githubUrl = "https://github.com/azamshaikhvvhs9022-hub";
+"use client";
 
-const focusXUrl =
-  "https://github.com/azamshaikhvvhs9022-hub/FOCUS-X";
+import { useEffect, useState } from "react";
+
+const GITHUB = "https://github.com/azamshaikhvvhs9022-hub";
+const FOCUS_X = `${GITHUB}/FOCUS-X`;
+const EMAIL = "abuzarrrrr.7@gmail.com";
+
+const ABOUT_IMAGE =
+  "https://images.unsplash.com/photo-1504384764586-bb4cdc1707b0?auto=format&fit=crop&fm=jpg&q=85&w=1600";
 
 const skills = [
-  {
-    number: "01",
-    title: "Python",
-    description: "Automation, AI, scripting and backend development.",
-  },
-  {
-    number: "02",
-    title: "C / C++",
-    description: "Programming fundamentals, algorithms and problem solving.",
-  },
-  {
-    number: "03",
-    title: "JavaScript",
-    description: "Interactive and modern web development.",
-  },
-  {
-    number: "04",
-    title: "React",
-    description: "Building dynamic and reusable interfaces.",
-  },
-  {
-    number: "05",
-    title: "Next.js",
-    description: "Modern full-stack web applications.",
-  },
-  {
-    number: "06",
-    title: "AI & APIs",
-    description: "Intelligent systems, integrations and automation.",
-  },
+  ["01", "Python", "Software & automation"],
+  ["02", "AI / ML", "Intelligent systems"],
+  ["03", "Web", "Modern interfaces"],
+  ["04", "Git & GitHub", "Version control"],
+  ["05", "Problem Solving", "Turning ideas into systems"],
+  ["06", "Learning", "Always exploring"],
+];
+
+const stats = [
+  ["∞", "Ideas"],
+  ["24/7", "Learning"],
+  ["01", "Featured Project"],
+  ["?", "What's next"],
+];
+
+const navItems = [
+  ["About", "#about"],
+  ["Skills", "#skills"],
+  ["Projects", "#projects"],
+  ["Contact", "#contact"],
 ];
 
 export default function Home() {
+  const [menuOpen, setMenuOpen] = useState(false);
+
+  useEffect(() => {
+    const elements = document.querySelectorAll(".reveal");
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("visible");
+          }
+        });
+      },
+      { threshold: 0.12 }
+    );
+
+    elements.forEach((element) => observer.observe(element));
+
+    return () => observer.disconnect();
+  }, []);
+
+  useEffect(() => {
+    document.body.style.overflow = menuOpen ? "hidden" : "";
+
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [menuOpen]);
+
+  useEffect(() => {
+    const handleEscape = (event: KeyboardEvent) => {
+      if (event.key === "Escape") {
+        setMenuOpen(false);
+      }
+    };
+
+    window.addEventListener("keydown", handleEscape);
+
+    return () => {
+      window.removeEventListener("keydown", handleEscape);
+    };
+  }, []);
+
+  const closeMenu = () => {
+    setMenuOpen(false);
+  };
+
   return (
     <main>
-      {/* ================= NAVBAR ================= */}
+      {/* =====================================================
+          NAVBAR
+      ===================================================== */}
 
-      <nav className="navbar">
-        <a href="#" className="logo">
-          THORFIN<span>.</span>
+      <nav className={`navbar ${menuOpen ? "menu-open" : ""}`}>
+        <a href="#home" className="logo" onClick={closeMenu}>
+          ABUZAR<span>.</span>
         </a>
 
+        {/* DESKTOP NAVIGATION */}
+
         <div className="nav-links">
-          <a href="#about">About</a>
-          <a href="#skills">Skills</a>
-          <a href="#projects">Projects</a>
-          <a href="#contact">Contact</a>
+          {navItems.map(([label, href]) => (
+            <a href={href} key={label}>
+              {label}
+            </a>
+          ))}
         </div>
 
+        {/* DESKTOP GITHUB */}
+
         <a
-          href={githubUrl}
+          href={GITHUB}
           target="_blank"
-          rel="noopener noreferrer"
-          className="nav-github"
+          rel="noreferrer"
+          className="nav-button"
         >
           GitHub ↗
         </a>
+
+        {/* MOBILE MENU BUTTON */}
+
+        <button
+          type="button"
+          className={`mobile-menu-button ${
+            menuOpen ? "active" : ""
+          }`}
+          onClick={() => setMenuOpen((current) => !current)}
+          aria-label={menuOpen ? "Close menu" : "Open menu"}
+          aria-expanded={menuOpen}
+        >
+          <span />
+          <span />
+        </button>
       </nav>
 
-      {/* ================= HERO ================= */}
+      {/* =====================================================
+          MOBILE MENU
+      ===================================================== */}
 
-      <section className="hero">
+      <div
+        className={`mobile-menu ${menuOpen ? "open" : ""}`}
+        aria-hidden={!menuOpen}
+      >
+        <div className="mobile-menu-inner">
+          <div className="mobile-menu-top">
+            <span>NAVIGATION</span>
+            <span>ABUZAR / 2026</span>
+          </div>
+
+          <div className="mobile-menu-links">
+            {navItems.map(([label, href], index) => (
+              <a
+                href={href}
+                key={label}
+                onClick={closeMenu}
+                style={{
+                  transitionDelay: menuOpen
+                    ? `${index * 70}ms`
+                    : "0ms",
+                }}
+              >
+                <span>0{index + 1}</span>
+                {label}
+                <strong>↗</strong>
+              </a>
+            ))}
+          </div>
+
+          <div className="mobile-menu-bottom">
+            <a
+              href={GITHUB}
+              target="_blank"
+              rel="noreferrer"
+              onClick={closeMenu}
+            >
+              GitHub ↗
+            </a>
+
+            <span>CODE · CREATE · BUILD</span>
+          </div>
+        </div>
+      </div>
+
+      {/* =====================================================
+          HERO
+      ===================================================== */}
+
+      <section className="hero" id="home">
         <div className="hero-grid" />
+        <div className="hero-glow" />
+        <div className="hero-glow-one" />
+        <div className="hero-glow-two" />
 
-        <div className="hero-glow hero-glow-one" />
-        <div className="hero-glow hero-glow-two" />
-
-        <div className="hero-content">
+        <div className="hero-content reveal">
           <div className="status">
-            <span className="status-dot" />
+            <span />
             Building something new
           </div>
 
           <p className="eyebrow">
-            DEVELOPER • AI ENTHUSIAST • PROBLEM SOLVER
+            DEVELOPER · BUILDER · AI ENTHUSIAST
           </p>
 
           <h1>
-            I build
+            Building
             <br />
             <span>digital things.</span>
           </h1>
 
           <p className="hero-description">
-            Turning ideas, code and creativity into useful,
-            intelligent and meaningful digital experiences.
+            Code, curiosity and a little bit of mystery. I build software,
+            intelligent systems and ideas that deserve to exist.
           </p>
 
-          <div className="hero-buttons">
-            <a href="#projects" className="primary-button">
-              Explore my work
-              <span>↗</span>
+          <p className="hero-quote">
+            01 &nbsp; Not everything needs to be explained.
+          </p>
+
+          <div className="hero-actions">
+            <a href="#projects" className="button button-light">
+              Explore my work ↗
             </a>
 
             <a
-              href={githubUrl}
+              href={GITHUB}
               target="_blank"
-              rel="noopener noreferrer"
-              className="secondary-button"
+              rel="noreferrer"
+              className="button button-dark"
             >
-              GitHub
-              <span>↗</span>
+              GitHub ↗
             </a>
           </div>
         </div>
 
-        <div className="hero-bottom">
+        <div className="hero-footer">
           <span>SCROLL TO EXPLORE</span>
-
-          <div className="hero-line">
-            <span />
-          </div>
-
-          <span>2026</span>
+          <span>INDIA · 2026</span>
         </div>
       </section>
 
-      {/* ================= MARQUEE ================= */}
-
-      <div className="marquee">
-        <div className="marquee-track">
-          <span>CODE</span>
-          <i>✦</i>
-          <span>CREATE</span>
-          <i>✦</i>
-          <span>BUILD</span>
-          <i>✦</i>
-          <span>INNOVATE</span>
-          <i>✦</i>
-          <span>CODE</span>
-          <i>✦</i>
-          <span>CREATE</span>
-          <i>✦</i>
-          <span>BUILD</span>
-          <i>✦</i>
-          <span>INNOVATE</span>
-          <i>✦</i>
-        </div>
-      </div>
-
-      {/* ================= ABOUT ================= */}
-
-      <section id="about" className="section about-section">
-        <div className="section-label">
-          <span>01</span>
+      {/* =====================================================
           ABOUT
-        </div>
+      ===================================================== */}
 
-        <div className="section-content">
-          <p className="small-heading">A LITTLE ABOUT ME</p>
+      <section className="section" id="about">
+        <p className="section-label reveal">01 — ABOUT ME</p>
 
-          <h2>
-            Building with
-            <br />
-            <span>curiosity.</span>
-          </h2>
+        <div className="about-grid">
+          <div className="about-image reveal">
+            <img
+              src={ABOUT_IMAGE}
+              alt="Dark developer workspace"
+            />
 
-          <p className="large-text">
-            I’m Thorfinn — a developer who enjoys experimenting
-            with technology, building projects and solving problems
-            through code.
-          </p>
+            <div className="image-overlay" />
 
-          <p className="body-text">
-            My interests span software development, artificial
-            intelligence, automation and modern web technologies.
-            I like taking an idea from a simple concept and turning
-            it into something people can actually use.
-          </p>
-
-          <div className="about-stats">
-            <div className="stat">
-              <strong>∞</strong>
-              <span>Ideas to build</span>
+            <div className="image-caption">
+              THE WORKSPACE
+              <br />
+              WHERE IDEAS BECOME CODE.
             </div>
 
-            <div className="stat">
-              <strong>24/7</strong>
-              <span>Learning mindset</span>
+            <div className="image-info">
+              <span>ABUZAR</span>
+              <span>UNKNOWN / 2026</span>
+            </div>
+          </div>
+
+          <div className="about-content reveal">
+            <p className="label">A LITTLE ABOUT ME</p>
+
+            <h2>
+              More than
+              <br />
+              <span>just code.</span>
+            </h2>
+
+            <p className="about-lead">
+              I&apos;m a developer who enjoys turning random ideas into
+              something real, useful and occasionally a little unexpected.
+            </p>
+
+            <p className="about-text">
+              I&apos;m interested in software development, artificial
+              intelligence and the systems that sit behind the things we use
+              every day. I like understanding how things work, breaking them
+              down and rebuilding them in a better way.
+            </p>
+
+            <p className="about-text">
+              Right now, I&apos;m focused on improving my development skills,
+              exploring AI and building projects that are more than just
+              something that looks good on a screen.
+            </p>
+
+            <div className="about-details">
+              <div className="detail">
+                <span>WHAT I LIKE</span>
+                <strong>Building unusual ideas</strong>
+              </div>
+
+              <div className="detail">
+                <span>WHAT I BUILD</span>
+                <strong>Software & intelligent systems</strong>
+              </div>
+
+              <div className="detail">
+                <span>WHAT COMES NEXT</span>
+                <strong>Something bigger</strong>
+              </div>
             </div>
 
-            <div className="stat">
-              <strong>01</strong>
-              <span>Goal — Build better</span>
+            <div className="mystery-box">
+              <span>THERE IS MORE</span>
+
+              <p>
+                The interesting projects usually start as an idea that sounds
+                slightly impossible.
+                <br />
+                <br />
+                — ABUZAR
+              </p>
+            </div>
+
+            <div className="stats">
+              {stats.map(([value, label]) => (
+                <div key={label}>
+                  <strong>{value}</strong>
+                  <span>{label}</span>
+                </div>
+              ))}
             </div>
           </div>
         </div>
       </section>
 
-      {/* ================= SKILLS ================= */}
-
-      <section id="skills" className="section skills-section">
-        <div className="section-label">
-          <span>02</span>
+      {/* =====================================================
           SKILLS
+      ===================================================== */}
+
+      <section className="section" id="skills">
+        <div className="section-heading reveal">
+          <div>
+            <p className="section-label">02 — SKILLS</p>
+
+            <h2>
+              Tools for
+              <br />
+              <span>building.</span>
+            </h2>
+          </div>
+
+          <p>
+            A growing collection of technologies, concepts and skills I use
+            while turning ideas into working systems.
+          </p>
         </div>
 
-        <div className="section-content">
-          <p className="small-heading">MY TOOLBOX</p>
+        <div className="skills-grid">
+          {skills.map(([number, title, description]) => (
+            <div className="skill-card reveal" key={number}>
+              <span className="skill-number">{number}</span>
 
-          <h2>
-            Tools behind
-            <br />
-            <span>the ideas.</span>
-          </h2>
+              <span className="skill-arrow">↗</span>
 
-          <div className="skills-list">
-            {skills.map((skill) => (
-              <div className="skill-card" key={skill.number}>
-                <span className="skill-number">
-                  {skill.number}
-                </span>
-
-                <div className="skill-main">
-                  <h3>{skill.title}</h3>
-
-                  <p>{skill.description}</p>
-                </div>
-
-                <span className="skill-arrow">↗</span>
+              <div>
+                <h3>{title}</h3>
+                <p>{description}</p>
               </div>
-            ))}
-          </div>
+            </div>
+          ))}
         </div>
       </section>
 
-      {/* ================= PROJECTS ================= */}
-
-      <section id="projects" className="section projects-section">
-        <div className="section-label">
-          <span>03</span>
+      {/* =====================================================
           PROJECT
+      ===================================================== */}
+
+      <section className="section" id="projects">
+        <div className="project-heading reveal">
+          <p className="section-label">03 — FEATURED PROJECT</p>
         </div>
 
-        <div className="section-content">
-          <p className="small-heading">FEATURED WORK</p>
+        <div className="project-card">
+          <div className="project-info reveal">
+            <div className="project-meta">
+              <span>PROJECT / 001</span>
+              <span>2026</span>
+            </div>
 
-          <h2>
-            One idea.
-            <br />
-            <span>One project.</span>
-          </h2>
+            <h3>
+              FOCUS-
+              <br />
+              X
+            </h3>
 
-          <div className="projects-list">
-            <article className="project-card-large">
-              <div className="project-top">
-                <span>01</span>
-                <span>PRODUCTIVITY / AI</span>
-              </div>
+            <p>
+              A study focus and distraction control system designed to help
+              users protect their attention. It combines focus sessions,
+              activity monitoring, app and website blocking, behavioural
+              insights and adaptive recommendations.
+            </p>
 
-              <div className="project-middle">
-                <h3>FOCUS-X</h3>
+            <div className="tech-stack">
+              <span>Python</span>
+              <span>Tkinter</span>
+              <span>AI</span>
+              <span>SQLite</span>
+              <span>Automation</span>
+            </div>
 
-                <p>
-                  An intelligent productivity and distraction-control
-                  system designed to help users stay focused through
-                  monitoring, app blocking, website protection and
-                  adaptive recommendations.
-                </p>
-              </div>
-
-              <div className="project-bottom">
-                <div className="project-tech">
-                  <span>Python</span>
-                  <span>AI</span>
-                  <span>Automation</span>
-                  <span>Desktop</span>
-                </div>
-
-                <a
-                  href={focusXUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="project-link"
-                >
-                  View FOCUS-X
-                  <span>↗</span>
-                </a>
-              </div>
-            </article>
-          </div>
-
-          <div className="all-projects">
             <a
-              href={githubUrl}
+              href={FOCUS_X}
               target="_blank"
-              rel="noopener noreferrer"
+              rel="noreferrer"
+              className="project-link"
             >
-              Visit my GitHub
-              <span>↗</span>
+              View project <span>↗</span>
             </a>
           </div>
+
+          {/* =================================================
+              FOCUS-X DASHBOARD MOCKUP
+          ================================================= */}
+
+          <div className="dashboard reveal">
+            <div className="dashboard-header">
+              <div className="window-buttons">
+                <i />
+                <i />
+                <i />
+              </div>
+
+              <span>FOCUS-X / DASHBOARD</span>
+
+              <strong>ACTIVE</strong>
+            </div>
+
+            <div className="dashboard-layout">
+              <aside className="dashboard-sidebar">
+                <div className="dashboard-logo">FX</div>
+
+                <a className="active">Overview</a>
+                <a>Focus</a>
+                <a>Activity</a>
+                <a>Insights</a>
+                <a>Settings</a>
+              </aside>
+
+              <div className="dashboard-main">
+                <div className="dashboard-title">
+                  <div>
+                    <small>GOOD EVENING</small>
+                    <h4>Focus Overview</h4>
+                  </div>
+
+                  <strong>25:00</strong>
+                </div>
+
+                <div className="dashboard-grid">
+                  <div className="dash-card score-card">
+                    <small>FOCUS SCORE</small>
+
+                    <div className="score-ring">
+                      <strong>87</strong>
+                      <span>/ 100</span>
+                    </div>
+
+                    <p>Excellent focus</p>
+                  </div>
+
+                  <div className="dash-card session-card">
+                    <small>CURRENT SESSION</small>
+
+                    <strong>18:42</strong>
+
+                    <div className="progress">
+                      <span />
+                    </div>
+
+                    <p>Deep work session</p>
+                  </div>
+                </div>
+
+                <div className="dash-card activity-card">
+                  <div className="activity-header">
+                    <small>ACTIVITY</small>
+                    <span>LAST 7 DAYS</span>
+                  </div>
+
+                  <div className="activity-bars">
+                    <i style={{ height: "32%" }} />
+                    <i style={{ height: "52%" }} />
+                    <i style={{ height: "44%" }} />
+                    <i style={{ height: "75%" }} />
+                    <i style={{ height: "60%" }} />
+                    <i style={{ height: "88%" }} />
+                    <i style={{ height: "68%" }} />
+                  </div>
+                </div>
+
+                <div className="blocked-card">
+                  <span>DISTRACTIONS BLOCKED</span>
+                  <strong>14</strong>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </section>
 
-      {/* ================= APPROACH ================= */}
+      {/* =====================================================
+          PHILOSOPHY
+      ===================================================== */}
 
-      <section className="statement-section">
-        <p>MY APPROACH</p>
+      <section className="statement">
+        <p className="section-label reveal">04 — PHILOSOPHY</p>
 
-        <h2>
-          Don’t just
+        <h2 className="reveal">
+          Stay curious.
           <br />
-          <span>write code.</span>
+          <span>Stay dangerous.</span>
         </h2>
 
-        <div className="statement-line" />
+        <div className="reveal" />
 
-        <p className="statement-text">
-          Understand the problem.
+        <p className="reveal">
+          Learn something. Break something. Build something better.
           <br />
-          Design the solution.
-          <br />
-          Build something that matters.
+          The goal is not to know everything — it&apos;s to keep discovering
+          what&apos;s possible.
         </p>
       </section>
 
-      {/* ================= CONTACT ================= */}
+      {/* =====================================================
+          CONTACT
+      ===================================================== */}
 
-      <section id="contact" className="contact-section">
-        <div className="contact-glow" />
+      <section className="contact" id="contact">
+        <p className="label reveal">05 — CONTACT</p>
 
-        <p className="small-heading">04 — CONTACT</p>
-
-        <h2>
+        <h2 className="reveal">
           Have an idea?
           <br />
-          <span>Let’s build it.</span>
+          <span>Let&apos;s build it.</span>
         </h2>
 
-        <p className="contact-description">
-          Great things usually start with a simple conversation.
+        <p className="reveal">
+          Maybe your idea is the next interesting thing hiding in the dark.
         </p>
 
-        <div className="contact-buttons">
-          <a
-            href={githubUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="primary-button"
-          >
-            Connect on GitHub
-            <span>↗</span>
-          </a>
-        </div>
+        {/* EMAIL ADDRESS */}
+
+        <p className="contact-email reveal">{EMAIL}</p>
+
+        {/* EMAIL BUTTON */}
+
+        <a
+          href={`mailto:${EMAIL}?subject=Hello%20Abuzar`}
+          className="button button-light reveal"
+        >
+          Start a conversation ↗
+        </a>
       </section>
 
-      {/* ================= FOOTER ================= */}
+      {/* =====================================================
+          FOOTER
+      ===================================================== */}
 
       <footer>
-        <div className="footer-left">
-          <span className="footer-logo">THORFIN.</span>
+        <strong>ABUZAR.</strong>
 
-          <span>Developer • Builder • Creator</span>
-        </div>
+        <span>Developer · Builder · AI Enthusiast</span>
 
-        <div className="footer-right">
-          <a
-            href={githubUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            GitHub ↗
-          </a>
-
-          <span>© 2026</span>
-        </div>
+        <a href="#home">Back to top ↑</a>
       </footer>
     </main>
   );
